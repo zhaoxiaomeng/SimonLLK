@@ -4,13 +4,17 @@ import java.awt.event.*;
 import javax.swing.*;
 class Spot{
 	public int x,y;
+	public Spot() {}
+	public Spot(int a,int b){
+		x=a;y=b;
+	}
 }
 class Match{
 	private int [][]map=new int[32][32];
 	private int []cnt=new int[21];
 	private int nrow,ncol,nkind;
 	private int nres,nhint;
-	private Spot Mark;
+	private Spot marked;
 	public void Print(){//Just for Debugging
 		System.out.println("nrow="+nrow+" ncol="+ncol+" nkind="+nkind+" nrestart="+nres+" nhint="+nhint);
 		System.out.println("The Count Array:");
@@ -42,12 +46,26 @@ class Match{
 		for (i=1;i<=nkind;i++) cnt[i]=nrow*ncol/nkind;
 		Reshuffle();
 	}
-	public void Display(){
+	public void Display(){//Repaint
 	}
 	public boolean isSame(Spot x,Spot y){
+		return (map[x.x][x.y]==map[y.x][y.y]);
+	}
+	public boolean isConnected(Spot x,Spot y){
 		return false;
 	}
-	public void FindOnePair(){
+	public void FindOnePair(Spot x,Spot y){
+	}
+	public void Clickon(Spot x){//Mouse Clicking on the spot x
+		if(marked==null) marked=x;
+		else if(!isSame(marked,x)) marked=x;
+		else if(!isConnected(marked,x)) marked=x;
+		else{
+			FindOnePair(marked,x);
+			marked=null;
+		}
+	}
+	public void GiveHint(){
 	}
 }
 public class S04_LLK_frame extends JFrame{
