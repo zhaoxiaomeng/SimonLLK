@@ -68,6 +68,10 @@ class Match{
 	public void GiveHint(){
 	}
 }
+class fenzhi
+{
+	
+}
 public class S04_LLK_frame extends JFrame{
 	private Match match=new Match();
 	private JLabel admin_l=new JLabel("Administrator Control Panel:");
